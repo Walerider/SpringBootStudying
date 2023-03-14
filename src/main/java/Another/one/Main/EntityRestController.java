@@ -16,17 +16,18 @@ public class EntityRestController {
         return repository.findAll();
     }
     @PostMapping("/entitys")
+    @RequestMapping()
     AnotherRestEntity newEntity(@RequestBody AnotherRestEntity newEntity){
         return repository.save(newEntity);
     }
-    @GetMapping("/employees/{id}")
+    @GetMapping("/entitys/{id}")
     AnotherRestEntity one(@PathVariable Long id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> new AnotherEntityNotFoundException(id));
     }
 
-    @PutMapping("/employees/{id}")
+    @PutMapping("/entitys/{id}")
     AnotherRestEntity replaceEntity(@RequestBody AnotherRestEntity newEntity, @PathVariable Long id) {
 
         return repository.findById(id)
@@ -41,7 +42,7 @@ public class EntityRestController {
                 });
     }
 
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/entitys/{id}")
     void deleteEntity(@PathVariable Long id) {
         repository.deleteById(id);
     }
